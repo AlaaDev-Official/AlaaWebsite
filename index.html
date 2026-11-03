@@ -159,6 +159,7 @@ a.row:hover .go { color: var(--brand); }
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
+  direction: ltr;
 }
 
 /* itch.io Game Grid Cards */
@@ -320,7 +321,7 @@ footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top:
             <p class="about-desc" data-en="Content creator and game developer from Egypt 🇪🇬" data-ar="صانع محتوى ومطوّر ألعاب من مصر 🇪🇬">Content creator and game developer from Egypt 🇪🇬</p>
             <div class="stats-row">
               <i class="fa-brands fa-youtube"></i>
-              <span class="stats-text" id="yt-sub-count">...</span>
+              <span class="stats-text" data-en="7.8K Subscribers" data-ar="7.8K مشترك">7.8K Subscribers</span>
             </div>
           </div>
         </div>
@@ -390,9 +391,9 @@ footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top:
       <div class="group">
         <h2 data-en="Files" data-ar="الملفات">Files</h2>
         <div class="list">
-          <a class="row mc" href="https://drive.google.com/file/d/1SV0NS7xsUXwRRc7Gd0Hz-oJ346NV-1XB/view" target="_blank" rel="noopener">
+          <a class="row mc" href="https://drive.google.com/file/d/1zQOYqyTgd0O01Q3WViplII0zdu6OfbRD/view?usp=sharing" target="_blank" rel="noopener">
             <span class="ico"><i class="fa-solid fa-cube"></i></span>
-            <span class="txt"><div class="name" data-en="Minecraft Mod" data-ar="مود ماين كرافت">Minecraft Mod</div><div class="sub" data-en="Minecraft" data-ar="ماين كرافت">Minecraft</div></span>
+            <span class="txt"><div class="name" data-en="Minecraft Mod (AlaaMax)" data-ar="مود ماين كرافت">Minecraft Mod (AlaaMax)</div><div class="sub" data-en="Minecraft" data-ar="ماين كرافت">Minecraft</div></span>
             <i class="fa-solid fa-download go"></i>
           </a>
           <a class="row yt" href="https://drive.google.com/file/d/1F4tcUBL5P2og6UVW8ZgMeDtsbczjY5nO/view" target="_blank" rel="noopener">
@@ -420,33 +421,6 @@ footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top:
 </div>
 
 <script>
-  // Fetch YouTube Subscribers Count Automatically
-  let rawSubCount = 0;
-
-  function formatSubs(count, currentLang) {
-    let formatted = count;
-    if (count >= 1000) {
-      formatted = (count / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-    }
-    return currentLang === 'ar' ? `${formatted} مشترك` : `${formatted} Subscribers`;
-  }
-
-  async function fetchYtSubs() {
-    const subElem = document.getElementById('yt-sub-count');
-    try {
-      const response = await fetch('https://yt.lemnoslife.com/noKey/channels?handle=@alaa-dev&part=statistics');
-      const data = await response.json();
-      if (data.items && data.items.length > 0) {
-        rawSubCount = parseInt(data.items[0].statistics.subscriberCount);
-        subElem.textContent = formatSubs(rawSubCount, lang);
-      }
-    } catch (e) {
-      subElem.textContent = lang === 'ar' ? 'أكثر من 7K مشترك' : '7K+ Subscribers';
-    }
-  }
-
-  fetchYtSubs();
-
   // Eyes follow the pointer
   const hero = document.getElementById('hero');
   const eyes = hero.querySelectorAll('.eye');
@@ -496,9 +470,6 @@ footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top:
     document.querySelectorAll('[data-en]').forEach(el => {
       if (el.dataset[lang]) el.textContent = el.dataset[lang];
     });
-    if (rawSubCount > 0) {
-      document.getElementById('yt-sub-count').textContent = formatSubs(rawSubCount, lang);
-    }
   };
 
   document.getElementById('yr').textContent = new Date().getFullYear();
