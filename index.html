@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlaaDev</title>
+<link rel="icon" type="image/png" href="1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+@font-face {
+  font-family: 'Open Sans XB';
+  src: url('OpenSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+}
+
+:root {
+  --brand: #38b6ff;
+  --bg: #07111c;
+  --surface: #0d1b2b;
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #eaf3fb;
+  --muted: #8aa0b4;
+  --hover: rgba(56, 182, 255, 0.08);
+}
+[data-theme="light"] {
+  --bg: #f2f8fd;
+  --surface: #ffffff;
+  --line: rgba(7, 17, 28, 0.1);
+  --text: #0a1a2a;
+  --muted: #566b7e;
+  --hover: rgba(56, 182, 255, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Tajawal', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  transition: background-color .25s, color .25s;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 8px; }
+
+.wrap { max-width: 34rem; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
+
+/* top bar */
+.bar { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: 1rem; }
+.chip-btn {
+  height: 2.5rem; min-width: 2.5rem; padding: 0 .9rem;
+  border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--text);
+  font: 500 .9rem 'Tajawal', sans-serif; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: border-color .2s, color .2s;
+}
+.chip-btn:hover { border-color: var(--brand); color: var(--brand); }
+
+/* hero */
+.hero {
+  background: var(--brand);
+  border-radius: 1.75rem;
+  height: 15rem;
+  display: flex; align-items: center; justify-content: center; gap: 4.5rem;
+  overflow: hidden;
+}
+.eye {
+  width: 3.4rem; height: 4.7rem;
+  background: #fff; border-radius: 50%;
+  animation: blink 6s infinite;
+  will-change: transform;
+}
+.eye + .eye { animation-delay: .06s; }
+@keyframes blink {
+  0%, 94%, 100% { scale: 1 1; }
+  96.5% { scale: 1 .08; }
+}
+
+.id { text-align: center; padding: 2rem 0 1.5rem; }
+.brand {
+  font-family: 'Open Sans XB', 'Tajawal', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 11vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  direction: ltr;
+}
+.tag { color: var(--muted); font-size: 1.05rem; margin-top: .6rem; }
+
+/* sections */
+.group { margin-top: 1.5rem; }
+.group h2 { font-size: .95rem; font-weight: 700; color: var(--muted); margin-bottom: .6rem; padding-inline: .25rem; }
+.list {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+.row {
+  display: flex; align-items: center; gap: .9rem;
+  padding: .9rem 1rem;
+  transition: background-color .2s;
+}
+.row + .row { border-top: 1px solid var(--line); }
+a.row:hover { background: var(--hover); }
+.row .ico {
+  width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+  border-radius: .75rem; display: grid; place-items: center;
+  background: var(--hover); color: var(--brand); font-size: 1.1rem;
+}
+.row .txt { flex: 1; min-width: 0; }
+.row .name { font-weight: 700; }
+.row .sub { color: var(--muted); font-size: .88rem; overflow-wrap: anywhere; }
+.row .go { color: var(--muted); font-size: .9rem; }
+a.row:hover .go { color: var(--brand); }
+
+.yt .ico { color: #ff4d4d; background: rgba(255,77,77,.12); }
+.tt .ico { color: #ff5c9d; background: rgba(255,92,157,.12); }
+.dc .ico { color: #7b86ff; background: rgba(123,134,255,.14); }
+.it .ico { color: #fa5c5c; background: rgba(250,92,92,.12); }
+.mc .ico { color: #34d399; background: rgba(52,211,153,.12); }
+
+/* About Me Custom Layout */
+.about-box {
+  padding: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.about-desc {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.stats-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+  background: var(--hover);
+  padding: .75rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  width: fit-content;
+  margin: 0 auto;
+}
+.stats-row i {
+  color: #ff4d4d;
+  font-size: 1.3rem;
+}
+.stats-text {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* itch.io Game Grid Cards */
+.itch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .85rem;
+}
+.itch-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.itch-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+.itch-thumb {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  background: #18283a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itch-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.itch-card:hover .itch-thumb img {
+  transform: scale(1.05);
+}
+.itch-badge {
+  position: absolute;
+  top: .5rem;
+  inset-inline-end: .5rem;
+  background: rgba(13, 27, 43, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fa5c5c;
+  padding: .25rem .5rem;
+  border-radius: .5rem;
+  font-size: .75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.itch-info {
+  padding: .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  flex: 1;
+}
+.itch-title {
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.itch-sub {
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+/* tabs */
+.tabs {
+  display: flex; gap: .35rem; padding: .35rem;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; overflow-x: auto; scrollbar-width: none;
+  position: sticky; top: .75rem; z-index: 10;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 1 0 auto; border: 0; background: transparent; color: var(--muted);
+  font: 700 .95rem 'Tajawal', sans-serif; padding: .6rem 1.1rem;
+  border-radius: 999px; cursor: pointer; white-space: nowrap;
+  display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  transition: background-color .2s, color .2s;
+}
+.tab:hover { color: var(--text); }
+.tab[aria-selected="true"] { background: var(--brand); color: #04121f; }
+
+.panel { display: none; }
+.panel.active { display: block; animation: show .25s ease; }
+@keyframes show { from { opacity: 0; } to { opacity: 1; } }
+
+.soon { text-align: center; padding: 2.5rem 1.5rem; }
+.soon .big {
+  width: 4.5rem; height: 4.5rem; margin: 0 auto 1.1rem; border-radius: 1.25rem;
+  display: grid; place-items: center; font-size: 1.8rem;
+  background: var(--hover); color: var(--brand);
+}
+.soon h3 { font-size: 1.35rem; margin-bottom: .6rem; }
+.badge {
+  display: inline-block; padding: .3rem .9rem; border-radius: 999px;
+  background: rgba(56,182,255,.14); color: var(--brand); font-weight: 700; font-size: .9rem;
+}
+#about .group h2 { text-align: center; }
+
+footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 2.5rem; }
+
+@media (max-width: 420px) {
+  .hero { height: 12.5rem; gap: 3rem; }
+  .eye { width: 2.8rem; height: 3.9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eye { animation: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <button class="chip-btn" id="theme-btn" aria-label="Toggle theme"><i class="fa-solid fa-sun"></i></button>
+    <button class="chip-btn" id="lang-btn">عربي</button>
+  </div>
+
+  <header>
+    <div class="hero" id="hero" aria-hidden="true">
+      <div class="eye"></div>
+      <div class="eye"></div>
+    </div>
+    <div class="id">
+      <h1 class="brand">AlaaDev</h1>
+      <p class="tag" data-en="Content creator & game developer · 🇪🇬 Egypt" data-ar="صانع محتوى ومطوّر ألعاب · 🇪🇬 مصر">Content creator & game developer · 🇪🇬 Egypt</p>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" data-tab="about"><i class="fa-solid fa-user"></i><span data-en="About" data-ar="عني">About</span></button>
+    <button class="tab" role="tab" data-tab="socials"><i class="fa-solid fa-share-nodes"></i><span data-en="Socials" data-ar="التواصل الاجتماعي">Socials</span></button>
+    <button class="tab" role="tab" data-tab="stuff"><i class="fa-solid fa-boxes-stacked"></i><span data-en="Stuff" data-ar="التحميلات">Stuff</span></button>
+    <button class="tab" role="tab" data-tab="stage"><i class="fa-solid fa-tv"></i><span data-en="Stage" data-ar="ستيج">Stage</span></button>
+  </nav>
+
+  <main>
+    <!-- About -->
+    <section class="panel" id="about" role="tabpanel">
+      <div class="group">
+        <h2 data-en="Who am I" data-ar="من أنا">Who am I</h2>
+        <div class="list">
+          <div class="about-box">
+            <p class="about-desc" data-en="Content creator and game developer from Egypt 🇪🇬" data-ar="صانع محتوى ومطوّر ألعاب من مصر 🇪🇬">Content creator and game developer from Egypt 🇪🇬</p>
+            <div class="stats-row">
+              <i class="fa-brands fa-youtube"></i>
+              <span class="stats-text" id="yt-sub-count">...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="group">
+        <h2 data-en="Contact & ads" data-ar="التواصل والإعلان">Contact & ads</h2>
+        <div class="list">
+          <a class="row" href="mailto:contact@alaadev.online">
+            <span class="ico"><i class="fa-solid fa-envelope"></i></span>
+            <span class="txt"><div class="name" data-en="Email" data-ar="البريد الإلكتروني">Email</div><div class="sub">contact@alaadev.online</div></span>
+            <i class="fa-solid fa-arrow-up-right-from-square go"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Socials -->
+    <section class="panel" id="socials" role="tabpanel">
+      <div class="group">
+        <div class="list">
+          <a class="row yt" href="https://youtube.com/@alaa-dev" target="_blank" rel="noopener">
+            <span class="ico"><i class="fa-brands fa-youtube"></i></span>
+            <span class="txt"><div class="name">YouTube</div><div class="sub">@alaa-dev</div></span>
+            <i class="fa-solid fa-arrow-up-right-from-square go"></i>
+          </a>
+          <a class="row tt" href="https://tiktok.com/@alaadev.official" target="_blank" rel="noopener">
+            <span class="ico"><i class="fa-brands fa-tiktok"></i></span>
+            <span class="txt"><div class="name">TikTok</div><div class="sub">@alaadev.official</div></span>
+            <i class="fa-solid fa-arrow-up-right-from-square go"></i>
+          </a>
+          <a class="row dc" href="https://discord.gg/Tk43w7xc9c" target="_blank" rel="noopener">
+            <span class="ico"><i class="fa-brands fa-discord"></i></span>
+            <span class="txt"><div class="name">Discord</div><div class="sub" data-en="Developers & designers community" data-ar="مجتمع المطورين والمصممين">Developers & designers community</div></span>
+            <i class="fa-solid fa-arrow-up-right-from-square go"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stuff -->
+    <section class="panel" id="stuff" role="tabpanel">
+      <div class="group">
+        <h2 data-en="Games" data-ar="الألعاب">Games</h2>
+        <div class="itch-grid">
+          <a class="itch-card" href="https://alaa-dev.itch.io/multislashs" target="_blank" rel="noopener">
+            <div class="itch-thumb">
+              <img src="a.png" alt="MultiSlash">
+              <span class="itch-badge"><i class="fa-brands fa-itch-io"></i> itch.io</span>
+            </div>
+            <div class="itch-info">
+              <div class="itch-title">MultiSlash</div>
+              <div class="itch-sub" data-en="Multiplayer Game" data-ar="لعبة جماعية">Multiplayer Game</div>
+            </div>
+          </a>
+          <a class="itch-card" href="https://alaa-dev.itch.io/forest-crystal-remake" target="_blank" rel="noopener">
+            <div class="itch-thumb">
+              <img src="GaeNzs.png" alt="ForestCrystal Remake">
+              <span class="itch-badge"><i class="fa-brands fa-itch-io"></i> itch.io</span>
+            </div>
+            <div class="itch-info">
+              <div class="itch-title">ForestCrystal Remake</div>
+              <div class="itch-sub" data-en="2D Platformer" data-ar="لعبة مغامرات 2D">2D Platformer</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="group">
+        <h2 data-en="Files" data-ar="الملفات">Files</h2>
+        <div class="list">
+          <a class="row mc" href="https://drive.google.com/file/d/1SV0NS7xsUXwRRc7Gd0Hz-oJ346NV-1XB/view" target="_blank" rel="noopener">
+            <span class="ico"><i class="fa-solid fa-cube"></i></span>
+            <span class="txt"><div class="name" data-en="Minecraft Mod" data-ar="مود ماين كرافت">Minecraft Mod</div><div class="sub" data-en="Minecraft" data-ar="ماين كرافت">Minecraft</div></span>
+            <i class="fa-solid fa-download go"></i>
+          </a>
+          <a class="row yt" href="https://drive.google.com/file/d/1F4tcUBL5P2og6UVW8ZgMeDtsbczjY5nO/view" target="_blank" rel="noopener">
+            <span class="ico"><i class="fa-solid fa-circle-down"></i></span>
+            <span class="txt"><div class="name" data-en="YouTube Downloader" data-ar="برنامج تحميل يوتيوب">YouTube Downloader</div><div class="sub" data-en="Tool" data-ar="أداة">Tool</div></span>
+            <i class="fa-solid fa-download go"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage -->
+    <section class="panel" id="stage" role="tabpanel">
+      <div class="group">
+        <div class="list soon">
+          <div class="big"><i class="fa-solid fa-tv"></i></div>
+          <h3>Alaa Dev Stage</h3>
+          <span class="badge" data-en="Coming soon" data-ar="قريباً">Coming soon</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="yr"></span> AlaaDev</footer>
+</div>
+
+<script>
+  // Fetch YouTube Subscribers Count Automatically
+  let rawSubCount = 0;
+
+  function formatSubs(count, currentLang) {
+    let formatted = count;
+    if (count >= 1000) {
+      formatted = (count / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    }
+    return currentLang === 'ar' ? `${formatted} مشترك` : `${formatted} Subscribers`;
+  }
+
+  async function fetchYtSubs() {
+    const subElem = document.getElementById('yt-sub-count');
+    try {
+      const response = await fetch('https://yt.lemnoslife.com/noKey/channels?handle=@alaa-dev&part=statistics');
+      const data = await response.json();
+      if (data.items && data.items.length > 0) {
+        rawSubCount = parseInt(data.items[0].statistics.subscriberCount);
+        subElem.textContent = formatSubs(rawSubCount, lang);
+      }
+    } catch (e) {
+      subElem.textContent = lang === 'ar' ? 'أكثر من 7K مشترك' : '7K+ Subscribers';
+    }
+  }
+
+  fetchYtSubs();
+
+  // Eyes follow the pointer
+  const hero = document.getElementById('hero');
+  const eyes = hero.querySelectorAll('.eye');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!calm) {
+    addEventListener('pointermove', e => {
+      const r = hero.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / innerWidth;
+      const dy = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+      eyes.forEach(el => {
+        el.style.transform = `translate(${dx * 36}px, ${dy * 28}px)`;
+        el.style.transition = 'transform .15s ease-out';
+      });
+    });
+  }
+
+  // Tabs
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  function showTab(id, push) {
+    if (!document.getElementById(id)) id = 'about';
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === id));
+    panels.forEach(p => p.classList.toggle('active', p.id === id));
+    if (push) history.replaceState(null, '', '#' + id);
+  }
+  tabs.forEach(t => t.onclick = () => showTab(t.dataset.tab, true));
+  addEventListener('hashchange', () => showTab(location.hash.slice(1)));
+  showTab(location.hash.slice(1) || 'about');
+
+  // Theme
+  const html = document.documentElement;
+  const themeIcon = document.querySelector('#theme-btn i');
+  document.getElementById('theme-btn').onclick = () => {
+    const dark = html.dataset.theme === 'dark';
+    html.dataset.theme = dark ? 'light' : 'dark';
+    themeIcon.className = dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+  };
+
+  // Language
+  let lang = 'en';
+  const langBtn = document.getElementById('lang-btn');
+  langBtn.onclick = () => {
+    lang = lang === 'en' ? 'ar' : 'en';
+    html.lang = lang;
+    html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    langBtn.textContent = lang === 'ar' ? 'English' : 'عربي';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (el.dataset[lang]) el.textContent = el.dataset[lang];
+    });
+    if (rawSubCount > 0) {
+      document.getElementById('yt-sub-count').textContent = formatSubs(rawSubCount, lang);
+    }
+  };
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
