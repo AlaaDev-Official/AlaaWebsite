@@ -418,16 +418,14 @@ footer .sig { font-family: var(--mono); font-size: .75rem; opacity: .7; }
 }
 .itch-grid {
     display: flex;
-    flex-direction: row; /* إجبار العناصر على الاصطفاف أفقياً */
-    flex-wrap: nowrap;    /* منع النزول لسطر جديد نهائياً (اجعلها wrap لو أردتهم ينزلون تلقائياً في الشاشات الصغيرة جداً) */
-    gap: 16px;           /* المسافة الأفقية بين البطاقات */
-    overflow-x: auto;    /* إضافة تمرير أفقي لو الشاشة أصغر من مجموع عرض البطاقات */
+    flex-direction: row;
+    gap: 16px;
     width: 100%;
 }
 
 .itch-card {
-    flex: 0 0 280px;     /* تجميد عرض البطاقة على 280px وعدم السماح لها بالتمدد أو التقلص */
-    max-width: 280px;
+    flex: 1;             /* تتوزع البطاقات الثلاث وتأخذ نفس المساحة أفقياً */
+    min-width: 0;        /* مهم جداً لمنع تداخل النصوص داخل الـ flex */
     box-sizing: border-box;
 }
 </style>
