@@ -418,17 +418,16 @@ footer .sig { font-family: var(--mono); font-size: .75rem; opacity: .7; }
 }
 .itch-grid {
     display: flex;
-    flex-wrap: wrap; /* اتركه wrap لكي تنزل البطاقات للأسفل تلقائياً إذا صغرت الشاشة، أو اجعله nowrap لو أردتهم أفقياً تماماً مهما كانت الشاشة صغيرة */
-    gap: 20px; /* المسافة بين البطاقات */
-    align-items: stretch;
+    flex-direction: row; /* إجبار العناصر على الاصطفاف أفقياً */
+    flex-wrap: nowrap;    /* منع النزول لسطر جديد نهائياً (اجعلها wrap لو أردتهم ينزلون تلقائياً في الشاشات الصغيرة جداً) */
+    gap: 16px;           /* المسافة الأفقية بين البطاقات */
+    overflow-x: auto;    /* إضافة تمرير أفقي لو الشاشة أصغر من مجموع عرض البطاقات */
+    width: 100%;
 }
 
 .itch-card {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 280px; /* هذا السطر يضمن توزيع البطاقات أفقياً ويعطيها عرضاً أدنى 280px */
-    max-width: 320px; /* حد أقصى لعرض البطاقة حتى لا تتمدد بشكل مبالغ فيه */
-    text-decoration: none;
+    flex: 0 0 280px;     /* تجميد عرض البطاقة على 280px وعدم السماح لها بالتمدد أو التقلص */
+    max-width: 280px;
     box-sizing: border-box;
 }
 </style>
