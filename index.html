@@ -417,9 +417,19 @@ footer .sig { font-family: var(--mono); font-size: .75rem; opacity: .7; }
   html { scroll-behavior: auto; }
 }
 .itch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap; /* اتركه wrap لكي تنزل البطاقات للأسفل تلقائياً إذا صغرت الشاشة، أو اجعله nowrap لو أردتهم أفقياً تماماً مهما كانت الشاشة صغيرة */
+    gap: 20px; /* المسافة بين البطاقات */
+    align-items: stretch;
+}
+
+.itch-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 280px; /* هذا السطر يضمن توزيع البطاقات أفقياً ويعطيها عرضاً أدنى 280px */
+    max-width: 320px; /* حد أقصى لعرض البطاقة حتى لا تتمدد بشكل مبالغ فيه */
+    text-decoration: none;
+    box-sizing: border-box;
 }
 </style>
 </head>
@@ -524,7 +534,7 @@ footer .sig { font-family: var(--mono); font-size: .75rem; opacity: .7; }
               <span class="itch-badge"><i class="fa-brands fa-itch-io"></i> itch.io</span>
             </div>
             <div class="itch-info">
-              <div class="itch-title">"Survive a 120</div>
+              <div class="itch-title">Survive a 120</div>
               <div class="itch-sub" data-en="Zombies Game" data-ar="لعبة زومبيز">Zombies Game</div>
             </div>
           </a>
