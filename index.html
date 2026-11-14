@@ -416,7 +416,11 @@ footer .sig { font-family: var(--mono); font-size: .75rem; opacity: .7; }
   .status .pulse { animation: none; }
   html { scroll-behavior: auto; }
 }
-
+.itch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
 </style>
 </head>
 <body>
