@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://supe-alaa.github.io/Alaa_Web/sitemap.xml
